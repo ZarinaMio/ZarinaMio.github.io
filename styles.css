@@ -20,7 +20,11 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  padding-left: 14rem;
+  background-color: #f7f3ec;
+  background-image: url("media/flowers-pattern.png"), url("media/texture-paper.jpg");
+  background-repeat: repeat, repeat;
+  background-size: 720px 720px, 820px 820px;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;
@@ -45,17 +49,18 @@ a { color: inherit; }
 .skip:focus { top: 0.6rem; }
 
 .top {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 auto 0 0;
   z-index: 5;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem 2rem;
-  width: 100%;
-  padding: 0.85rem max(var(--pad), calc((100% - var(--page)) / 2));
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 14rem;
+  padding: 1.5rem 1.25rem;
+  background: rgba(247, 243, 236, 0.9);
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
 }
 
 .brand {
@@ -80,9 +85,10 @@ a { color: inherit; }
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.35rem 1.15rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 100%;
   min-width: 0;
 }
 
@@ -96,25 +102,40 @@ a { color: inherit; }
 .nav a:focus-visible { color: var(--orange); }
 
 .front {
-  display: grid;
-  grid-template-columns: minmax(16rem, 0.78fr) minmax(0, 1.22fr);
-  align-items: stretch;
   max-width: var(--page);
   margin: 0 auto;
   padding: 1.25rem var(--pad) 0;
-  gap: 0.75rem;
 }
 
 .cover {
+  position: relative;
+  overflow: hidden;
   background: var(--orange);
-  min-height: 26rem;
-  padding: 1.75rem 1.6rem 1.5rem;
+  padding: clamp(3rem, 7vw, 5rem) 1.6rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("media/texture-paper.jpg");
+  background-size: 820px 820px;
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.cover > * {
+  position: relative;
+  z-index: 1;
 }
 
 .front h1 {
-  margin: 0.6rem 0 0;
+  margin: 0;
   font-weight: 500;
   font-size: clamp(1.85rem, 3vw, 2.6rem);
   line-height: 1.1;
@@ -125,6 +146,8 @@ a { color: inherit; }
   margin: 0;
   font-size: 0.95rem;
 }
+
+.front .role { margin-top: 0.55rem; }
 
 .mark {
   width: 1.05rem;
@@ -288,6 +311,13 @@ summary > span,
   background: #eee;
 }
 
+.frames video.portrait {
+  width: auto;
+  max-width: 100%;
+  max-height: 36rem;
+  margin-inline: auto;
+}
+
 .panel-grid .copy { position: sticky; top: 4.25rem; }
 
 .copy p {
@@ -307,6 +337,60 @@ summary > span,
 .copy .label:first-child { margin-top: 0; }
 
 .copy a { text-underline-offset: 0.15em; }
+
+.copy ul {
+  margin: 0 0 0.9rem;
+  padding-left: 1.15rem;
+}
+
+.copy li { margin: 0 0 0.35rem; }
+
+.event-intro { margin-bottom: 1.5rem; }
+
+.event-title {
+  margin: 0.4rem 0 0.8rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.event-intro blockquote {
+  margin: 0;
+  max-width: 46rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.event-intro .when {
+  margin: 0.7rem 0 0;
+  font-size: 0.95rem;
+}
+
+.copy.event-copy p,
+.copy.event-copy ul { max-width: 46rem; }
+
+.sublabel {
+  margin: 1rem 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.panel .gallery { margin-top: 1rem; }
+
+.docs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  max-width: 46rem;
+  margin: 0 0 0.9rem;
+}
+
+.docs a { text-underline-offset: 0.15em; }
+
+.docs-gallery { margin-top: 0.25rem; }
 
 .festival {
   display: grid;
@@ -369,11 +453,22 @@ footer strong {
 }
 
 @media (max-width: 860px) {
+  body {
+    padding-left: 0;
+    background-size: 520px 520px, 620px 620px;
+  }
   .top {
+    position: sticky;
+    inset: auto;
+    width: auto;
+    height: auto;
     align-items: stretch;
     flex-direction: column;
     gap: 0.55rem;
     padding: 0.85rem var(--pad);
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    overflow-y: visible;
   }
   .nav {
     display: grid;
@@ -393,6 +488,7 @@ footer strong {
   .copy p,
   .festival blockquote { max-width: 100%; }
   .panel-grid .copy { position: static; }
+  .work.text-first .panel-grid .copy { order: -1; }
   .panel { padding-left: 0; }
   summary { grid-template-columns: 2.75rem 1fr auto; gap: 0.7rem; }
   .thumb,
