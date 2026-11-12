@@ -93,13 +93,28 @@ a { color: inherit; }
 }
 
 .nav a {
+  position: relative;
+  padding-left: 0.95rem;
   color: var(--ink);
   text-decoration: none;
   font-size: 0.95rem;
 }
 
+.nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 0.42rem;
+  height: 0.42rem;
+  background: transparent;
+}
+
 .nav a:hover,
 .nav a:focus-visible { color: var(--orange); }
+
+.nav a.is-active { font-weight: 500; }
+.nav a.is-active::before { background: var(--orange); }
 
 .front {
   max-width: var(--page);
@@ -187,7 +202,7 @@ main {
   padding: 0.5rem var(--pad) 4rem;
 }
 
-.section { margin-top: 2.75rem; scroll-margin-top: 4.5rem; }
+.section { margin-top: 2.75rem; scroll-margin-top: 1rem; }
 
 .section-head {
   display: flex;
@@ -219,7 +234,7 @@ main {
 
 .work {
   border-top: 1px solid var(--line);
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 1rem;
 }
 
 .section .work:last-of-type { border-bottom: 1px solid var(--line); }
@@ -457,6 +472,8 @@ footer strong {
     padding-left: 0;
     background-size: 520px 520px, 620px 620px;
   }
+  .section,
+  .work { scroll-margin-top: 8rem; }
   .top {
     position: sticky;
     inset: auto;
