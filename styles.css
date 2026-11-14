@@ -82,8 +82,6 @@ body.gate-open { overflow: hidden; }
   background: var(--ink);
 }
 
-.gate-card .role { margin: 0 0 0.6rem; }
-
 .gate-card h2 {
   margin: 0 0 0.75rem;
   font-size: clamp(1.35rem, 3vw, 1.7rem);
