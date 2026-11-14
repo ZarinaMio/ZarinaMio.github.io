@@ -1,6 +1,6 @@
-# zarina-projects — локальный клон
+# ZarinaMio.github.io — локальный клон
 
-Это git-клон репозитория <https://github.com/ZarinA0926/zarina-projects>
+Это git-клон репозитория <https://github.com/ZarinaMio/ZarinaMio.github.io>
 (ветка `main`, upstream `origin/main`). Рабочая папка целиком является клоном.
 
 Права на тексты, фото и видео принадлежат автору — Анастасии Зарубиной.
