@@ -3,6 +3,33 @@ const navLinks = [...document.querySelectorAll(".nav a")];
 const programmaticOpens = new WeakSet();
 let pinnedLink = null;
 
+const gate = document.getElementById("gate");
+const gateAccept = document.getElementById("gate-accept");
+
+if (gate && gateAccept) {
+  if (!document.documentElement.classList.contains("gate-accepted")) {
+    document.body.classList.add("gate-open");
+    gateAccept.focus({ preventScroll: true });
+
+    gate.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault();
+        gateAccept.focus();
+      }
+    });
+  }
+
+  gateAccept.addEventListener("click", () => {
+    try {
+      sessionStorage.setItem("zarina-gate", "1");
+    } catch (e) {}
+    document.documentElement.classList.add("gate-accepted");
+    document.body.classList.remove("gate-open");
+    const firstNav = document.querySelector(".nav a");
+    if (firstNav) firstNav.focus({ preventScroll: true });
+  });
+}
+
 function closeOthers(current) {
   for (const item of works) {
     if (item !== current) item.open = false;
