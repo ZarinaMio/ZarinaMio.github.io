@@ -22,9 +22,9 @@ body {
   margin: 0;
   padding-left: 14rem;
   background-color: #f7f3ec;
-  background-image: url("media/flowers-pattern.png"), url("media/texture-paper.jpg");
+  background-image: url("media/flowers-pattern.png?v=2"), url("media/texture-paper.jpg");
   background-repeat: repeat, repeat;
-  background-size: 720px 720px, 820px 820px;
+  background-size: 560px 560px, 820px 820px;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;
@@ -475,7 +475,7 @@ footer strong {
 @media (max-width: 860px) {
   body {
     padding-left: 0;
-    background-size: 520px 520px, 620px 620px;
+    background-size: 430px 430px, 620px 620px;
   }
   .section,
   .work { scroll-margin-top: 8rem; }
